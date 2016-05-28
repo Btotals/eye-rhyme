@@ -1,6 +1,5 @@
 package com.utils;
 
-
 public class Keyword {
 	public static String STATUS = "status";
 	public static String NAME = "name";
@@ -14,6 +13,7 @@ public class Keyword {
 	public static String EMAIL = "email";
 	public static String BIRTHDAY = "birthday";
 	public static String GENDER = "gender";
+	public static String RANK = "rank";
 	public static String HOBBY = "hobby";
 	public static String SIGNATURE = "signature";
 	
@@ -24,6 +24,7 @@ public class Keyword {
 	public static String GRADE = "grade";
 	public static String LOWEST_PRICE = "lowest_price";
 	public static String THEATERS = "theaters";
+	public static String THEATER_NAME = "theater_name";
 	public static String CONTACT = "contact";
 	public static String DESCRIPTION = "description";
 	public static String GRADE_NUM = "grade_num";
@@ -36,6 +37,7 @@ public class Keyword {
 	public static String OBJECT_ID = "object_id";
 	public static String VALUE = "value";
 	
+	public static String MOVIES = "movies";
 	public static String MOVIE_ID = "movie_id";
 	public static String DURATION = "duration";
 	public static String REALEASE_DATE = "release_date";
@@ -52,5 +54,25 @@ public class Keyword {
 	public static String POSITION_NUM = "position_num";
 	public static String TICKET_ID = "ticket_id";
 	public static String RECEIPT_NUM = "receipt_num";
+	
+	public static String ARTICLE_ID = "article_id";
+	public static String MOVIE_NAME = "movie_name";
+	public static String AUTHOR = "author";
+	public static String TITLE = "title";
+	public static String READ_NUM = "read_num";
+	public static String COMMENT_NUM = "comment_num";
+	public static String LIKE_NUM = "like_num";
+	public static String COMMENT_ID = "comment_id";
+	
+	public static String ACTIVITY_ID = "activity_id";
+	public static String JOIN_NUM = "join_num";
+	public static String JOIN_BOUND = "join_bound";
+	public static String PLACE = "place";
+	
+	public static String LAUNCHER_DETAIL = "launcher_detail";
+	public static String MOVIE_DETAIL = "movie_detail";
+	public static String ACTIVITY_DETAIL = "activity_detail";
+	public static String JOIN_DETAIL = "join_detail";
+
 }
 

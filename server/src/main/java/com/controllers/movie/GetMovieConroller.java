@@ -66,7 +66,7 @@ public class GetMovieConroller {
 			// JSONArray ja = JSONArray.fromObject(list);
 			
 			map.put(Keyword.STATUS, Values.OK);
-			map.put(Keyword.THEATERS, list);
+			map.put(Keyword.MOVIES, list);
     		return JSONObject.fromObject(map).toString();
     	} catch(Exception exception) {
     		exception.printStackTrace();

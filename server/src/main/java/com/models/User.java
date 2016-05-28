@@ -17,6 +17,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import com.utils.Values;
+
 
 @Entity
 @Table(name="user")
@@ -62,6 +64,7 @@ public class User {
 		this.name = name;
 		this.phone = phone;
 		this.rank = new BigDecimal("0.00");
+		this.gender = Values.ZERO;
 	}
 
 	public String getHobby() {

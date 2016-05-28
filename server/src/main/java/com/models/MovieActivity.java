@@ -20,6 +20,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import com.utils.Values;
+
 @Entity
 @Table(name="MovieActivity")
 public class MovieActivity {
@@ -39,7 +41,7 @@ public class MovieActivity {
 	private Date dateTime;
 	
 	@Column(columnDefinition="TINYINT(1) DEFAULT 0")
-	private Byte state;
+	private Integer state;
 	
 	@Column(length=45)
 	@NotNull
@@ -55,6 +57,13 @@ public class MovieActivity {
 	@NotNull
     private String contact;
 	
+	@Column
+    private Integer joinBound;
+	
+	@Column(length=300)
+	@NotNull
+    private String content;
+	
 	/*@ElementCollection(targetClass=JoinActivity.class, fetch=FetchType.EAGER)
 	@CollectionTable(name="JoinActivity", joinColumns=@JoinColumn(name="MovieActivityId", nullable=false))
 	@Column(name="MovieActivityId")
@@ -67,12 +76,15 @@ public class MovieActivity {
 	
 	public MovieActivity() {}
 	
-	public MovieActivity(Date dateTime, String place, BigDecimal longitude, BigDecimal latitude, String contact) {
+	public MovieActivity(Date dateTime, String place, String content, BigDecimal longitude, BigDecimal latitude, String contact, Integer bound) {
 		this.dateTime = dateTime;
 		this.place = place;
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.contact = contact;
+		this.content = content;
+		this.state = Values.ZERO;
+		this.joinBound = bound;
 	}
 	
 	public String getContact() {
@@ -88,7 +100,7 @@ public class MovieActivity {
 	public Set<User> getParticipants() {
 		return participants;
 	}
-	public Byte getState() {
+	public Integer getState() {
 		return state;
 	}
 	public BigDecimal getLatitude() {
@@ -106,6 +118,12 @@ public class MovieActivity {
 	public User getLauncher() {
 		return launcher;
 	}
+	public String getContent() {
+		return content;
+	}
+    public Integer getJoinBound() {
+		return joinBound;
+	}
 	
 	public void setContact(String contact) {
 		this.contact = contact;
@@ -119,7 +137,7 @@ public class MovieActivity {
 	public void setParticipants(Set<User> participants) {
 		this.participants = participants;
 	}
-	public void setState(Byte state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 	public void setLatitude(BigDecimal latitude) {
@@ -136,6 +154,12 @@ public class MovieActivity {
 	}
 	public void setLauncher(User launcher) {
 		this.launcher = launcher;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public void setJoinBound(Integer joinBound) {
+		this.joinBound = joinBound;
 	}
 	
 }

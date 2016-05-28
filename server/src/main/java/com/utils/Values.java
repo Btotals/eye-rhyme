@@ -16,4 +16,7 @@ public class Values {
 	public static Integer CANCEL = 2;
 	
 	public static Integer RECEIPT_SIZE = 6;
+	public static String EMPTY = "";
+	
+	public static Integer JOIN_BOUND_DEFAULT;
 }

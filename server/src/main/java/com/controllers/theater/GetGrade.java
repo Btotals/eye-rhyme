@@ -55,6 +55,7 @@ public class GetGrade {
     				Map<String, String> tmap = new HashMap<String, String>();
     				String name = userRepository.findUserById(grade.getUserId()).getName();
     		        tmap.put(Keyword.NAME, name);
+    		        tmap.put(Keyword.USER_ID, grade.getUserId().toString());
     		        tmap.put(Keyword.GRADE, grade.getValue().toString());
     		        tmap.put(Keyword.CONTENT, grade.getContent());
     		        tmap.put(Keyword.DATE_TIME, grade.getDataTime());

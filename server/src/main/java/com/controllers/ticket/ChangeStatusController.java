@@ -1,5 +1,6 @@
 package com.controllers.ticket;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,8 @@ import com.utils.Values;
 
 import com.models.MovieProduct;
 import com.models.MovieTicket;
+
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @RestController
@@ -40,28 +43,37 @@ public class ChangeStatusController {
     @RequestMapping(value="movie_ticket/change_status", method=RequestMethod.POST)
     public String changeStatus(@RequestBody JSONObject jsonObj) {
     	
-    	Map<String, String> map = new HashMap<String, String>();
+    	Map<String, Object> map = new HashMap<String, Object>();
     	try {
     		if (jsonObj.containsKey(Keyword.TICKET_ID) && jsonObj.containsKey(Keyword.STATUS)) {
+    			
     			Integer status = jsonObj.getInt(Keyword.STATUS);
-    			MovieTicket movieTicket = movieTicketRepository.findOne(jsonObj.getInt(Keyword.TICKET_ID));
-    			movieTicket.setStatus(status);
-    			if (status == Values.CANCEL) {
-    				MovieProduct movieProduct = movieTicket.getMovieProduct();
-        			movieProduct.getSeats().remove(movieTicket.getPositionNum());
-        			movieProductRepository.save(movieProduct);
-    			}
     			
-    			if (status == Values.ALPAID) {
-    				String receiptString = StringMerger.getRandomString(Values.RECEIPT_SIZE);
-    				movieTicket.setReceiptNum(receiptString);
-    				map.put(Keyword.RECEIPT_NUM, receiptString);
-    			}
-    			
-    			movieTicketRepository.save(movieTicket);
+    			ArrayList<String> receipts = new ArrayList<String>();
+				JSONArray jsonArray = JSONArray.fromObject(jsonObj.getString(Keyword.TICKET_ID));
+				for (int i = 0; i < jsonArray.size(); i++) {
+					int ticket_id = (Integer) jsonArray.get(i);
+					MovieTicket movieTicket = movieTicketRepository.findOne(ticket_id);
+	    			
+					movieTicket.setStatus(status);
+	    			if (status == Values.CANCEL) {
+	    				MovieProduct movieProduct = movieTicket.getMovieProduct();
+	        			movieProduct.getSeats().remove(movieTicket.getPositionNum());
+	        			movieProductRepository.save(movieProduct);
+	    			}
+	    			
+	    			if (status == Values.ALPAID) {
+	    				String receiptString = StringMerger.getRandomString(Values.RECEIPT_SIZE);
+	    				movieTicket.setReceiptNum(receiptString);
+	    				receipts.add(receiptString);
+	    			}
+	    			
+	    			movieTicketRepository.save(movieTicket);
+				}
     			
     			map.put(Keyword.STATUS, Values.OK);
-	    		return JSONObject.fromObject(map).toString();
+    			if (status == Values.ALPAID) map.put(Keyword.RECEIPT_NUM, receipts);
+    			return JSONObject.fromObject(map).toString();
     		}
     	} catch(Exception exception) {
     		exception.printStackTrace();

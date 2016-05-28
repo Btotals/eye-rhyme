@@ -2,6 +2,7 @@ package com;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -78,9 +79,8 @@ public class Application extends SpringBootServletInitializer implements Command
     
     public void run(String... strings) throws Exception {
     	try {
-    		
-    		/*createUser();
-    		createMovieDescription();
+    		createUser();
+    		createMovieDescription(25);
     		createTheaters();
     		createMovieProducts();
     		createMovieTicket();
@@ -90,8 +90,9 @@ public class Application extends SpringBootServletInitializer implements Command
     		createComment();
     		joinActivity();
     		createMovieGrade();
-    		createTheaterGrade();*/
-    		//learnJDBC();
+    		createTheaterGrade();
+    		// learnJDBC();
+    		// createMovieProducts();
     		
     	} catch(Exception e) {
     		e.printStackTrace();
@@ -134,18 +135,19 @@ public class Application extends SpringBootServletInitializer implements Command
     	userRepository.save(new User(id1, name1, account1.getPhone()));
     }
     
-    public void createMovieDescription() throws Exception {
-    	for (int i = 1; i <= 25; i++) {
-	    	String name = "Thomas Muller" + String.valueOf(i);
+    public void createMovieDescription(int n) throws Exception {
+    	for (int i = 1; i <= n; i++) {
+	    	String name = "Captain America: Civil War " + String.valueOf(i);
 			Integer type = i%5 + 1;
 			Integer duration = 120 + i;
-			String directors = "涔旀仼路璐瑰剴";
-			String actors = "灏煎皵路濉炶タ/姣斿皵路榛樼憺";
-			String description = "姣涘厠鍒╋紙灏煎皵路濉炶タ Neel Sethi 楗帮級鏄竴涓敱鐙肩兢鍏诲ぇ鐨勪汉绫荤敺瀛╋紝褰辩墖鍥寸粫浠栫殑妫灄鍐掗櫓寰愬緪灞曞紑銆�"
-					+ "韪忎笂浜嗕竴鍦虹簿褰╃悍鍛堢殑鑷垜鎺㈢储鏃呯▼銆�";
-			
+			String directors = "乔·卢素   安东尼·卢素";
+			directors = new String(directors.getBytes(), "utf-8");
+			String actors = "克里斯·埃文斯/小罗伯特·唐尼";
+			actors = new String(actors.getBytes(), "utf-8");
+			String description = "5月6日，由美国漫威影业公司出品的超级英雄大片《美国队长3》将登陆中国约290家IMAX影院。作为《复仇者联盟2》之后最强阵容的漫威超级英雄集结，再加上火热的映前造势和首轮提前场爆出的超高口碑都让《美国队长3》成为整个5月最引人关注的IMAX超级大片。";
+			description = new String(description.getBytes(), "utf-8");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date releaseDate = sdf.parse(String.format("2016-04-%d", i));
+			Date releaseDate = sdf.parse(String.format("2016-05-%d", i));
 			
 			movieDescriptionRepository.save(new MovieDescription(name, type, releaseDate, duration, 
 					directors, actors, description));
@@ -167,27 +169,24 @@ public class Application extends SpringBootServletInitializer implements Command
 	    	{"22.989072","113.340968"}
     	};
     	for (int i = 1; i <= 11; i++) {
-	    	String name = "娴蜂笂鍥介檯褰卞煄" + String.valueOf(i);
-			String location = "鏅檧鐜悆娓�"+ String.valueOf(i) + "妤�";
+	    	String name = "广州飞扬影城-正佳店" + String.valueOf(i);
+			String location = "天河区天河路228号正佳广场7"+ String.valueOf(i) + "楼";
 			String contact = "6067096" + String.valueOf(i);
-			String description = "娴蜂笂鍥介檯褰卞煄鐜悆娓簵鍦板涓北鍖楄矾3300鍙凤紝鍧愯惤浜庢枼璧勭櫨浜裤�佸舰浼煎法鍨嬭埅姣嶇殑鏈堟槦鐜悆娓�4灞傦紝"
-					+ "绱т緷缇庝附鐨勯暱椋庢捣娲嬪叕鍥拰钁楀悕鐨勯珮绛夊搴溾�斺�斾笂娴峰崕涓滃笀鑼冨ぇ瀛︺�傞櫎浜嗕紭瓒婄殑鑷劧鍜屼汉鏂囩幆澧冨锛�"
-					+ "娴蜂笂鍥介檯褰卞煄鐜悆娓簵浜ら�氫篃鍗佸垎渚垮埄锛屽奖鍩庡湴澶勯潤瀹夈�侀暱瀹併�佹櫘闄�涓夊尯缁撳悎澶勶紝"
-					+ "涓庡唴鐜珮鏋跺弻鍚戝対閬撹繎鍦ㄥ挮灏猴紝绱ч偦涓幆锛屽懆杈规湁鍗佸嚑鏉″叕浜ょ嚎璺彲鎶佃揪";
-			BigDecimal longitude = new BigDecimal(locations[i - 1][0]);
-			BigDecimal latitude = new BigDecimal(locations[i - 1][1]);
+			String description = "九个豪华影厅的五星级飞扬影城，在此时一定能满足众多影迷的需求。5厅全新升级为天幕厅：全广州首家杜比全景声、中国巨幕。广受白领、情侣欢迎的飞扬影城在2005和2006年度凭着优异的票房成绩，坐上了中国第一影城的宝座。顶天立地的大屏幕，真正实现空中飘飘欲仙看电影的神奇感受，体验国际最先进的杜比SRD和DTS数码环音系统，比利时Baroo卫星数码电影带给您惊心动魄的真正大片神奇之旅。五星级的电影配套设计融合飞扬智慧的创造，使您以最好的方式看电影！";
+			BigDecimal longitude = new BigDecimal(locations[i - 1][1]);
+			BigDecimal latitude = new BigDecimal(locations[i - 1][0]);
 			theaterRepository.save(new Theater(name, location, contact, description, longitude, latitude));
     	}
     }
     
     public void createMovieProducts() throws Exception {
-    	MovieDescription movieDescription = movieDescriptionRepository.findMovieDescriptionById(1);
+    	Theater theater = theaterRepository.findOne(1);
+    	MovieDescription movieDescription = movieDescriptionRepository.findMovieDescriptionById(25);
 		for (int j = 1; j <= 5; j++) {
-	    	for (int i = 1; i <= 11; i++) {
-		    	Theater theater = theaterRepository.findTheaterById(i);
+	    	for (int i = 15; i <= 31; i++) {
 				Integer type = j;
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				Date date = sdf.parse(String.format("2016-04-%d", i));
+				Date date = sdf.parse(String.format("2016-05-%d", i));
 				Integer round = j;
 				Integer hall = j;
 				Integer price = (30 + i);
@@ -197,6 +196,58 @@ public class Application extends SpringBootServletInitializer implements Command
 			}
 		}
     }
+    
+    public void createMovieDescriptionAndCreateRelativeProducts(Integer movie_id) throws Exception {
+    	int ExpireTime = 3600*24*1000;
+    	int TotalDay = 30*3;
+    	Long today = new Date().getTime();
+    	Integer price = 30 + (int)(Math.random()*30);
+    	Integer discount = 5 + (int)(Math.random()*10);
+    	MovieDescription movieDescription = movieDescriptionRepository.findMovieDescriptionById(movie_id);
+    	// get all theaters and create relative products
+    	ArrayList<Theater> theaters = (ArrayList<Theater>) theaterRepository.findAll();
+    	
+    	for (Theater theater: theaters) {
+    		// round and hall..
+    		for (int j = 1; j <= 5; j++) {
+    	    	for (int i = 0; i <= TotalDay; i++) {
+    	    		Date date = new Date(today + i*ExpireTime);
+    	    		Integer round = j;
+    				Integer hall = j;
+    				// type is between 1 and 3.
+    				Integer type = 1 + (int)(Math.random()*3);
+    				MovieProduct movieProduct = new MovieProduct(movieDescription, theater, type, date, round, hall, price, discount);
+    				movieProductRepository.save(movieProduct);
+    	    	}
+    		}
+    	}
+    }
+    
+    public void createTheaterAndCreateRelativeProducts(Integer theater_id) throws Exception {
+    	int ExpireTime = 3600*24*1000;
+    	int TotalDay = 30*3;
+    	Long today = new Date().getTime();
+    	Integer price = 30 + (int)(Math.random()*30);
+    	Integer discount = 5 + (int)(Math.random()*10);
+    	Theater theater = theaterRepository.findOne(theater_id);
+    	// get all movies and create relative products
+    	ArrayList<MovieDescription> movieDescriptions = (ArrayList<MovieDescription>) movieDescriptionRepository.findAll();
+    	for (MovieDescription movieDescription: movieDescriptions) {
+    		// round and hall..
+    		for (int j = 1; j <= 5; j++) {
+    	    	for (int i = 0; i <= TotalDay; i++) {
+    	    		Date date = new Date(today + i*ExpireTime);
+    	    		Integer round = j;
+    				Integer hall = j;
+    				// type is between 1 and 3.
+    				Integer type = 1 + (int)(Math.random()*3);
+    				MovieProduct movieProduct = new MovieProduct(movieDescription, theater, type, date, round, hall, price, discount);
+    				movieProductRepository.save(movieProduct);
+    	    	}
+    		}
+    	}
+    }
+    
     
     public void createMovieGrade() throws Exception {
     	User []user = {userRepository.findUserById(1), userRepository.findUserById(2)};
@@ -252,7 +303,9 @@ public class Application extends SpringBootServletInitializer implements Command
 		BigDecimal latitude = new BigDecimal("23.7777773");
 		String place = "Broad way";
 		String contact = "510006";
-		MovieActivity movieActivity = new MovieActivity(dateTime, place, longitude, latitude, contact);
+		String content = "今晚约吗？";
+		Integer join_num = 10;
+		MovieActivity movieActivity = new MovieActivity(dateTime, place, content, longitude, latitude, contact, join_num);
 		movieActivity.setMovieDescription(movieDescription);
 		movieActivity.setLauncher(user);
 		movieActivityRepository.save(movieActivity);

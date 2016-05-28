@@ -1,5 +1,6 @@
 package com.controllers.ticket;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,8 @@ import com.utils.Values;
 import com.models.MovieProduct;
 import com.models.MovieTicket;
 import com.models.User;
+
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @RestController
@@ -40,22 +43,31 @@ public class MakeOrderController {
     @RequestMapping(value="movie_ticket/make_order", method=RequestMethod.POST)
     public String makeOrder(@RequestBody JSONObject jsonObj) {
     	
-    	Map<String, String> map = new HashMap<String, String>();
+    	Map<String, Object> map = new HashMap<String, Object>();
     	try {
     		if (jsonObj.containsKey(Keyword.PRODUCT_ID) && jsonObj.containsKey(Keyword.POSITION_NUM)
     				&& jsonObj.containsKey(Keyword.USER_ID) && jsonObj.containsKey(Keyword.TYPE)) {
     			MovieProduct movieProduct = movieProductRepository.findMovieProductById(jsonObj.getInt(Keyword.PRODUCT_ID));
-    			Integer position = jsonObj.getInt(Keyword.POSITION_NUM);
-    			movieProduct.getSeats().add(position);
-    			movieProductRepository.save(movieProduct);
     			User user = userRepository.findOne(jsonObj.getInt(Keyword.USER_ID));
     			Integer type = jsonObj.getInt(Keyword.TYPE);
     			Integer status = Values.UNPAID;
-    			MovieTicket movieTicket = new MovieTicket(user, movieProduct, position, type, status, "");
-    			movieTicketRepository.save(movieTicket);
+    			
+    			ArrayList<Integer> tickeIds = new ArrayList<Integer>();
+				JSONArray jsonArray = JSONArray.fromObject(jsonObj.getString(Keyword.POSITION_NUM));
+				for (int i = 0; i < jsonArray.size(); i++) {
+					int position = (Integer) jsonArray.get(i);
+					movieProduct.getSeats().add(position);
+					
+					MovieTicket movieTicket = new MovieTicket(user, movieProduct, position, type, status, "");
+	    			movieTicketRepository.save(movieTicket);
+					
+	    			tickeIds.add(movieTicket.getId());
+				}
+				
+    			movieProductRepository.save(movieProduct);
     			
     			map.put(Keyword.STATUS, Values.OK);
-    			map.put(Keyword.TICKET_ID, movieTicket.getId().toString());
+    			map.put(Keyword.TICKET_ID, tickeIds);
 	    		return JSONObject.fromObject(map).toString();
     		}
     	} catch(Exception exception) {

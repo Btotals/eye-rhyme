@@ -7,3 +7,5 @@
 /android/.DS_Store
 /android/build
 /android/captures
+/webView/.DS_Store
+/webView/node_modules

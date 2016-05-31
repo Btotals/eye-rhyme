@@ -1,0 +1,25 @@
+include navbar.jade
+
+mixin comment
+  //- +navbar({title: '简评'})
+  .comment_area
+    +comment_item({title: "红红火火恍恍惚惚何厚铧红红火火恍恍惚惚何厚铧红红火火恍恍惚惚何厚铧", author: "因吹丝汀", movie_name: "滚蛋吧！肿瘤君", read_num: 564, comment_num: 123, like_num: 365, poster: "./static/img/zerg.jpg"})
+    +comment_item({title: "红红火火恍恍惚惚何厚铧红红火火恍恍惚惚何厚铧红红火火恍恍惚惚何厚铧", author: "因吹丝汀", movie_name: "滚蛋吧！肿瘤君", read_num: 564, comment_num: 123, like_num: 365, poster: "./static/img/zerg.jpg"})
+    +comment_item({title: "红红火火恍恍惚惚何厚铧红红火火恍恍惚惚何厚铧红红火火恍恍惚惚何厚铧", author: "因吹丝汀", movie_name: "滚蛋吧！肿瘤君", read_num: 564, comment_num: 123, like_num: 365, poster: "./static/img/zerg.jpg"})
+    +comment_item({title: "红红火火恍恍惚惚何厚铧红红火火恍恍惚惚何厚铧红红火火恍恍惚惚何厚铧", author: "因吹丝汀", movie_name: "滚蛋吧！肿瘤君", read_num: 564, comment_num: 123, like_num: 365, poster: "./static/img/zerg.jpg"})
+
+//- data {Object} contain comment info
+
+mixin comment_item(data)
+  .comment_item
+    .comment_subtitle
+      span.author #{data.author}
+      span.movie_name 评论: 《#{data.movie_name}》
+    .comment_body
+      .comment_title #{data.title}
+      .comment_poster
+        img(src="#{data.poster}")
+    .comment_status_detail
+      span.comment_read #{data.read_num}次阅
+      span.comment_num #{data.comment_num}次评论
+      span.like_num #{data.like_num}赞

@@ -1,0 +1,20 @@
+mixin comment_detail
+  //- +navbar({title: "评：幻体：续命游戏"})
+  +comment_detail_info({subtitle: "剧情烂成屎", author: "因吹斯汀", datetime: "2015-09-16 23:00:08", content: "非常棒的题材！可惜编剧硬搞成屎。\n如此刻薄的人，换身杀人不眨眼的躯体后，竟然负负得正，怀着一塌糊涂的柔情，竟然，冒着生命危险，全然不顾一切后果，去营救不认识的母女，并且与科学家悍然开战。理由是：科学家骗了他，没有用全新躯壳。他可是救了你的命呢，并且不光是救命，而是给了你崭新的人生！你活着时咋没见你这么高尚？\n科学家也屎得掉渣，既然是把他描写得丧尽天良，为什么不就简单点，直接告诉主角，老实点，不然自己宝贝女儿得遭殃。主角拿科学家的老婆做要挟，科学家就应该拿主角的女儿要挟啊！主角凭什么自己女儿不顾，一门心思去救别人？\n2.5亿换躯体，也是忒便宜了，不说25亿，就是开价10亿，这科学家也会忙得不亦乐乎，全世界排长队的要排到100年后。并且躯壳完全不用杀人，什么死刑犯、车祸死亡者、意外死亡者，要多少有多少。科学家完全不需要隐瞒，说明白了再弄，主角爱换不换。\n我根本不相信主角会再退还躯体给那大兵，如果确实善心大发于心不忍，最多限度是找个躯壳把自己的意识先转过去，然后再让大兵恢复意识。体验到了长生不老，还会让自己选择死去吗？！\n除非是生不如死。。。。。。。。。。\n主角是活得生不如死吗？简直就是春风得意，人生赢家，他会选择死去？那么心疼那母女，还不如带着自己的意识去照顾那母女，肯定会让母女生活得更好，更何况自己还有个宝贝女儿。\n有如此的牵挂，谁会选择自己死去，让别人照顾自己的牵挂？！更何况自己有如此超凡的商业能力，足以让那母女生活得更好。其实，那大兵反而是人生的失败者，主角怎么放心让他去照顾？", read_num: 233, comment_num: 66, like_num: 233})
+
+mixin comment_detail_info(data)
+  .comment_detail_area
+    .comment_detail_subtitle #{data.subtitle}
+    .comment_detail_post_info
+      span.comment_detail_avatar
+        //- img(src="/uploadFiles-1.0/image/download + #{data.user_id}")
+        img(src="./static/img/zerg.jpg")
+      span.comment_detail_username #{data.author}
+      span.comment_detail_datetime #{data.datetime}
+    .comment_detail_content !{data.content}
+
+  .comment_detail_footer
+    .comment_detail_read #{data.read_num}次阅
+    .comment_detail_num 选座购票
+    .like_detail_num #{data.like_num}赞
+

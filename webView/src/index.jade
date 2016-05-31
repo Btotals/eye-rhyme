@@ -1,0 +1,19 @@
+include ./jade/comment.jade
+include ./jade/comment_detail.jade
+
+html
+  meta(charset="utf-8")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  link(rel="stylesheet", href="css/index.css")
+  title Resume
+
+  body
+    .comment_list
+      +comment
+    //- .comment_detail
+    //-   +comment_detail
+
+    script(src="http://localhost:35729/livereload.js")
+    script(src='static/lib/jquery-2.1.4.min.js')
+    script(src='static/lib/underscore-min.js')
+    script(src="js/index.js")

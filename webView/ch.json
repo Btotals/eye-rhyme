@@ -1,0 +1,80 @@
+{
+  "project":
+  [{
+    "title": "Resume builder",
+    "time": "2015.12",
+    "preview": "static/img/Resume Builder.png",
+    "summary": "一个简单地前端简历生成器，可以配合填写网页表单生成一个JSON文件配置的方式，让不懂代码知识的人也能够轻松制作出漂亮的在线简历，附带<b>响应式设计</b>。同时还能生成PDF下载版。<p>PS：你现在看到的简历也是用它生成的</p>",
+    "tags": ["LiveScript", "Jade", "Sass"],
+    "lnk": "#",
+    "src": "#"
+  },
+  {
+    "title": "杯口咖啡后台",
+    "time": "2015.08",
+    "preview": "static/img/Breaco.png",
+    "summary": "杯口咖啡是当时和一些师兄以及同学的一个创业项目，希望通过改造现有咖啡厅的经营模式，从而达到增加用户粘性、减少运营成本的目的。<ul><li>页面主题采用PHP开发。</li><li>页面主体数据使用Ajax加载。</li><li>同时开发了仿小票风格的Popover弹出层控件。</li></ul>",
+    "tags": ["PHP", "JavaScript", "Ajax"],
+    "lnk": "#",
+    "src": "#"
+  }],
+
+  "skill":
+  [{
+    "name": "HTML(5)&CSS(3)",
+    "val": "95",
+    "level": "master"
+  },
+  {
+    "name": "JavaScript",
+    "val": "95",
+    "level": "master",
+    "info": "<ul><li>hahaha</li><li>hehehe</li><li>xxxxxx</li></ul>"
+  },
+  {
+    "name": "Meteor.js",
+    "val": "90",
+    "level": "master"},
+  {
+    "name": "Node.js",
+    "val": "80",
+    "level": "proficient"},
+  {
+    "name": "Python",
+    "val": "70",
+    "level": "qualified",
+    "info": "<ul><li>hhh</li><li>hehehehehehe</li><li>hhhhhhhhhhhhhhxxxxxx</li></ul>"},
+  {
+    "name": "Photoshop",
+    "val": "60",
+    "level": "known"
+  }],
+
+  "profile":
+  {
+    "src": "static/img/zerg.jpg",
+    "name": "隔壁老王",
+    "selfIntro": "Professional Passionate Programmer",
+    "desire": "前端攻城狮 软件攻城狮"
+  },
+
+  "education":
+  [{
+    "src": "static/img/logo.gif",
+    "from": "2017.07",
+    "to": "2019.06",
+    "degree": "硕士",
+    "Uname": "中山大学",
+    "major": "信息科学与计算机学院",
+    "exp": ["曾获……", "曾担任……", "曾参与……"]
+  },
+  {
+    "src": "static/img/logo.gif",
+    "from": "2013.07",
+    "to": "",
+    "degree": "学士",
+    "Uname": "中山大学",
+    "major": "数据科学与计算机学院",
+    "exp": ["曾获……", "曾担任……", "曾参与……"]
+  }]
+}
